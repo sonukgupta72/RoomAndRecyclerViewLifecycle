@@ -7,11 +7,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.room.Room
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Completable
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.Single
 
 
 class RepositoryManager {
@@ -47,6 +44,9 @@ class RepositoryManager {
         DeleteAllTheData().execute()
     }
 
+    fun insertAllItem(useModels: ArrayList<DataModel>): Completable {
+        return myDataBase.getDataDao().insertDataModel(useModels)
+    }
 
     @SuppressLint("CheckResult")
     fun addDataItemThroughRxJava(dataModel: DataModel) {

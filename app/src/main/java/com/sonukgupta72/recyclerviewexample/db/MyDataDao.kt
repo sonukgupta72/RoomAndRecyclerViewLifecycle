@@ -1,10 +1,11 @@
 package com.sonukgupta72.recyclerviewexample.db
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 interface MyDataDao {
@@ -16,6 +17,10 @@ interface MyDataDao {
 
     @Insert
     fun addDataModel(vararg dataModel: DataModel)
+
+
+    @Insert
+    fun insertDataModel(dataModels: ArrayList<DataModel>): Completable
 
     @Query("Delete from datamodel")
     fun deleteAllTheData()
