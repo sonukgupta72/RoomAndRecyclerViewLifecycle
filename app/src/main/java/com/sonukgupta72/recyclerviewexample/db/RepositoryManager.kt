@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.AsyncTask
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.LiveData
 import androidx.room.Room
 import io.reactivex.Flowable
 import io.reactivex.Completable
@@ -38,6 +39,10 @@ class RepositoryManager {
 
     fun getAllData(): Flowable<List<DataModel>> {
         return myDataBase.getDataDao().getAllDataModel()
+    }
+
+    fun getLiveData(): LiveData<List<DataModel>> {
+        return myDataBase.getDataDao().getLiveDataModel()
     }
 
     fun deleteAllTheData(){

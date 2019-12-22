@@ -1,5 +1,6 @@
 package com.sonukgupta72.recyclerviewexample.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -11,6 +12,9 @@ import io.reactivex.Single
 interface MyDataDao {
     @Query("Select * From DataModel")
     fun getAllDataModel(): Flowable<List<DataModel>>
+
+    @Query("Select * From DataModel")
+    fun getLiveDataModel(): LiveData<List<DataModel>>
 
 //    @Query("Select * From DataModel Where id == :uid")
 //    fun getAllDataModel(uid: Int): Maybe<List<DataModel>>

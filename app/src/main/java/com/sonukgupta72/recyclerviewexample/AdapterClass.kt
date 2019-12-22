@@ -9,15 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sonukgupta72.recyclerviewexample.db.DataModel
 import kotlinx.android.synthetic.main.item_name_list.view.*
 
-class AdapterClass  : RecyclerView.Adapter <AdapterClass.ViewHolder> {
+class AdapterClass  : RecyclerView.Adapter<AdapterClass.ViewHolder>() {
 
-    private var list : List<DataModel>
+    private var list : List<DataModel> = ArrayList()
     private val LEFT_TYPE = 1
     private val RIGHT_TPE = 2
-
-    constructor (list : List<DataModel>) {
-        this.list = list
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         lateinit var view : ViewHolder
@@ -47,6 +43,11 @@ class AdapterClass  : RecyclerView.Adapter <AdapterClass.ViewHolder> {
         var name : String? = list.get(holder.adapterPosition).name
         Log.d("LifeCycle", "onBindViewHolder")
         holder.textView?.text = name
+    }
+
+    fun setNotes(list: List<DataModel>) {
+        this.list = list
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
